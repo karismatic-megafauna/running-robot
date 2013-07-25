@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src='javascript/underscore-min.js'></script>
+	<script src='javascript/shifty-min.js'></script>
+	<script src='javascript/rekapi-min.js'></script>
+</head>
+<body>
+  <canvas width='500px';></canvas>
+  <script>
+  var canvas = document.getElementsByTagName('canvas')[0],
+      kapi = new Kapi({
+        'context': canvas
+      });
+
+  var actor = new Kapi.CanvasActor({
+    // Draws a circle.
+    'draw': function (context, state) {
+      context.beginPath();
+      context.arc(
+        state.x || 50,
+        state.y || 50,
+        state.radius || 50,
+        0,
+        Math.PI*2,
+        true);
+      context.fillStyle = state.color || '#f0f';
+      context.fill();
+      context.closePath();
+    }
+  });
+
+  kapi.addActor(actor);
+
+  actor
+    .keyframe(0, {
+      x: 50,
+      y: 50
+    })
+    .keyframe(5000, {
+      x: 500,
+      y: 100
+    }, 'easeOutExpo');
+
+  kapi.play();
+
+  </script>
+</body>
+</html>
+
+<!-- questions
+
+
+Q:Why is width 300px wide? is that a canvas thing?
+A:
+
+Q:
+A:
+
+Q:
+A:
+
+
+Q:
+A:
+
+
+Q:
+A:
+
+
+Q:
+A:
+
+
+Q:
+A:
+
+
+
+ -->
